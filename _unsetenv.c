@@ -9,26 +9,26 @@
 
 int _unsetenv(const char *name)
 {
-	char **ep, **sp;
-	size_t len;
+	char **env_p, **shift_p;
+	size_t length;
 
 	if (name == NULL || *name == '\0' || strchr(name, '=') != NULL)
 	{
 		return (-1);
 	}
 
-	len = strlen(name);
+	length = _strlen(name);
 
-	for (ep = environ; *ep != NULL; )
+	for (env_p = environ; *env_p != NULL; )
 	{
-		if (strncmp(*ep, name, len) == 0 && (*ep)[len] == '=')
+		if (strncmp(*env_p, name, length) == 0 && (*env_p)[length] == '=')
 		{
-			for (sp = ep; *sp != NULL; sp++)
-				*sp = *(sp + 1);
+			for (shift_p = env_p; *shift_p != NULL; shift_p++)
+				*shift_p = *(shift_p + 1);
 		}
 		else
 		{
-			ep++;
+			env_p++;
 		}
 	}
 
