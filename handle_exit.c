@@ -7,14 +7,14 @@
   * Return: Void
   */
 
-void handle_exit(char **args)
+int handle_exit(char **args)
 {
 	int exit_status;
 
 	if (args[1] != NULL)
 	{
 		exit_status = atoi(args[1]);
-		exit(exit_status);
+		return (exit_status);
 	}
-	exit(EXIT_SUCCESS);
+	return (0);
 }

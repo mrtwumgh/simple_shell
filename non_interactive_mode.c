@@ -34,7 +34,7 @@ void non_interactive_mode(int fd)
 
 		free(args);
 
-		if (stat == 0)
+		if (stat != 0)
 		{
 			break;
 		}

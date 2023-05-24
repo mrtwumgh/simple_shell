@@ -31,7 +31,7 @@ char *get_new_dir_oldpwd(void);
 char *get_new_dir_home(void);
 int handle_cd(char **args);
 int handle_env(void);
-void handle_exit(char **args);
+int handle_exit(char **args);
 void update_pwd(char *new_path);
 ssize_t my_getline(char **lineptr, size_t *n, int fd);
 char *my_strtok(char *str, const char *delim);

@@ -15,7 +15,7 @@ int _exec(char **args)
 
 	if (strcmp(args[0], "exit") == 0)
 	{
-		handle_exit(args);
+		return (handle_exit(args));
 	}
 	if (strcmp(args[0], "env") == 0)
 	{
