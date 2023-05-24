@@ -20,6 +20,8 @@ char **split_line(char *line)
 		perror("split_line: allocation error");
 		exit(EXIT_FAILURE);
 	}
+	if (line == NULL)
+		return (tokens);
 
 	token = my_strtok(line, TOK_DELIM);
 	while (token != NULL)

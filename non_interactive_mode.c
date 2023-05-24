@@ -23,25 +23,25 @@ void non_interactive_mode(int fd)
 		}
 		if (command[0] == '\0')
 		{
-			free(command);
 			continue;
 		}
 		args = split_line(command);
 		if (args == NULL)
 		{
-			free(command);
 			continue;
 		}
 		stat = _exec(args);
 
 		free(args);
 
-		if (!stat)
+		if (stat == 0)
 		{
 			break;
 		}
+		free(command);
 		command = NULL;
 		buffer_size = 0;
 	}
 	free(command);
+	close(fd);
 }
