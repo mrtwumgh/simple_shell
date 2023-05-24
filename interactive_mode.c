@@ -23,6 +23,11 @@ void interactive_mode(void)
 			continue;
 		}
 		command = split_line(line);
+		if (command == NULL)
+		{
+			free(line);
+			continue;
+		}
 		stat = _exec(command);
 
 		free(line);

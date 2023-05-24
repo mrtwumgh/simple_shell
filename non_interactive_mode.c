@@ -17,12 +17,24 @@ void non_interactive_mode(int fd)
 
 	while ((bytes_read = my_getline(&command, &buffer_size, fd)) != -1)
 	{
-		command[bytes_read - 1] = '\0';
+		if (bytes_read > 0)
+		{
+			command[bytes_read - 1] = '\0';
+		}
+		if (command[0] == '\0')
+		{
+			free(command);
+			continue;
+		}
 		args = split_line(command);
+		if (args == NULL)
+		{
+			free(command);
+			continue;
+		}
 		stat = _exec(args);
 
 		free(args);
-		free(command);
 
 		if (!stat)
 		{
@@ -31,6 +43,5 @@ void non_interactive_mode(int fd)
 		command = NULL;
 		buffer_size = 0;
 	}
-
 	free(command);
 }

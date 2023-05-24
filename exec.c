@@ -35,13 +35,18 @@ int _exec(char **args)
 	if (pid == 0)
 	{
 		handle_child_process(command_path, args);
+		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
+	{
 		perror("fork");
+		free(command_path[0]);
+		free(command_path);
+		return (-1);
+	}
 	else
 		waitpid(pid, &stat, 0);
 	free(command_path[0]);
 	free(command_path);
-
 	return (1);
 }
