@@ -14,7 +14,7 @@ int handle_exit(char **args)
 	if (args[1] != NULL)
 	{
 		exit_status = atoi(args[1]);
-		return (exit_status);
+		_exit(exit_status);
 	}
 	return (0);
 }
